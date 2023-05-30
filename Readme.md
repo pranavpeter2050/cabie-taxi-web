@@ -9,6 +9,8 @@ On visiting the app, it will ask if the user wants to hail a ride as a **passeng
 php artisan make:model Driver --migration
 ```
 
+Each time a passenger requests a ride somewhere, we need to save this information in the database. We'll call this model `trip`. There will be multiple trips associated with a passenger or a driver.
+
 ## Reference
 
 - [Build A Ride Share App with Laravel and Vue | Full Stack Application Tutorial](https://www.youtube.com/watch?v=iFOEU6YNBzw)
