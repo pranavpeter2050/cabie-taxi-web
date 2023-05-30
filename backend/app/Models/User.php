@@ -32,4 +32,14 @@ class User extends Authenticatable
         'password',
         'remember_token',
     ];
+
+    public function driver() {
+        // one-to-one relationship; a user can have only one driver model associated with it
+        return $this->hasOne(Driver::class);
+    }
+
+    public function trips() {
+        // a user can have multiple trips associated with them
+        return $this->hasMany(Trip::class);
+    }
 }
