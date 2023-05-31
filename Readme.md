@@ -24,6 +24,16 @@ The Twilio package apparently doesn't work for Indian numbers. For now, we'll di
 We'll define a route to fetch the details of the authenticated user.
 In order to get the `user()` object from the `$request->user()` we'll need to add the middleware, `auth:sanctum` into the request and we need to provide it with the **Authorization header** containing the `token` we generated earlier using `createToken()` method inside `verify@LoginController`.
 
+Now, we are going to have multiple routes associated with the *Auth token*. So instead of tacking on the `->middleware('auth:sanctum')` to each of them routes, we define a **Route Group** that will group all the required routes inside this `auth:sanctum` middleware.
+
+```bash
+Route::group(['middleawre' => 'auth:sanctum'], function() {
+    Route::get('/user', function(Request $request) {
+        return $request->user();
+    });
+});
+```
+
 ## Reference
 
 - [Build A Ride Share App with Laravel and Vue | Full Stack Application Tutorial](https://www.youtube.com/watch?v=iFOEU6YNBzw)
