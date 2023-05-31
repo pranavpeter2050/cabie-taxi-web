@@ -34,6 +34,10 @@ Route::group(['middleawre' => 'auth:sanctum'], function() {
 });
 ```
 
+## Driver related functionality
+
+When a user is logged in, the app will ask if they want to hail a ride or work as a driver. We'll define two routes, one for checking if the user is an existing driver. If yes, we'll fetch their details, if no then other route will be used to save the user's driver-related details.
+
 ## Reference
 
 - [Build A Ride Share App with Laravel and Vue | Full Stack Application Tutorial](https://www.youtube.com/watch?v=iFOEU6YNBzw)
