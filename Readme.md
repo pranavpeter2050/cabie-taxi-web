@@ -97,6 +97,41 @@ php artisan websockets:serve
 
 ## Frontend
 
+Open a terminal inside the `frontend` folder and run below command to install Vue.
+
+```bash
+npm init vue@latest .
+
+// teminal output
+C:\GitHub\cabie\frontend> npm init vue@latest .
+Need to install the following packages:
+  create-vue@3.6.4
+Ok to proceed? (y) y
+npm WARN EBADENGINE Unsupported engine {
+npm WARN EBADENGINE   package: 'create-vue@3.6.4',
+npm WARN EBADENGINE   required: { node: '>=v16.20.0' },
+npm WARN EBADENGINE   current: { node: 'v16.19.0', npm: '9.5.1' }
+npm WARN EBADENGINE }
+
+Vue.js - The Progressive JavaScript Framework
+
+√ Package name: ... cabie
+√ Add TypeScript? ... No
+√ Add JSX Support? ... No
+√ Add Vue Router for Single Page Application development? ... Yes
+√ Add Pinia for state management? ... Yes
+√ Add Vitest for Unit Testing? ... No
+√ Add an End-to-End Testing Solution? » No
+√ Add ESLint for code quality? ... No
+
+Scaffolding project in C:\GitHub\cabie\frontend...
+
+Done. Now run:
+
+  npm install
+  npm run dev
+```
+
 ## Reference
 
 - [Build A Ride Share App with Laravel and Vue | Full Stack Application Tutorial](https://www.youtube.com/watch?v=iFOEU6YNBzw)
