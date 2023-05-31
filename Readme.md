@@ -17,6 +17,8 @@ Install `twilio` to help with the OTP functionality.
 composer require laravel-notification-channels/twilio
 ```
 
+The Twilio package apparently doesn't work for Indian numbers. For now, we'll directly look up the database to get the generated Login_code (OTP) and pass this as params in the `login/verify` API.
+
 ## Reference
 
 - [Build A Ride Share App with Laravel and Vue | Full Stack Application Tutorial](https://www.youtube.com/watch?v=iFOEU6YNBzw)

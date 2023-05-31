@@ -29,4 +29,30 @@ class LoginController extends Controller
         // return back a response to frontend
         return response()->json(['message' => 'OTP notification sent successfullly.']);
     }
+
+    public function verify(Request $request) {
+        // validate the incoming request
+        $request->validate([
+            'phone' => 'required|numeric|min:10',
+            'login_code' => 'required|numeric|between:111111,999999'
+        ]);
+
+        // find the user
+        $user = User::where('phone', $request->phone)
+            ->where('login_code', $request->login_code)
+            ->first();
+
+        // is the login OTP received, the same as the one saved in DB
+        // if so, return back a auth token
+        if($user) {
+            $user->update([
+                'login_code' => null
+            ]);
+
+            return $user->createToken($request->login_code)->plainTextToken;
+        }
+
+        // if not, return back a message
+        return response()->json(['message' => 'Invalid verification code.'], 401);
+    }
 }
