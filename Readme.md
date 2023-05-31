@@ -19,6 +19,8 @@ composer require laravel-notification-channels/twilio
 
 The Twilio package apparently doesn't work for Indian numbers. For now, we'll directly look up the database to get the generated Login_code (OTP) and pass this as params in the `login/verify` API.
 
+## Backend
+
 ## Making use of the generated `Auth` token
 
 We'll define a route to fetch the details of the authenticated user.
@@ -49,8 +51,56 @@ We also need to define a route in order to adjust the trip from user (passenger)
 - when a driver **ends** the trip
 - update the driver's location
 
+## Adding `Websockets` events
+
+The last thing that we should do for the backend before it's fully functional, is push out `events` for some of these API endpoints.
+To do this, we'll have to dispatch `Event` classes for each of the events that we need to push down.
+
+```bash
+php artisan make:event TripAccepted
+php artisan make:event TripStarted
+php artisan make:event TripEnded
+php artisan make:event TripLocationUpdated
+```
+
+After making the `Event` classes, we need to install a package to actually push these events out so that they can be consumed by our frontend. The two most common ones are: 
+
+- soketi/soketi
+- beyondcode/laravel-websockets
+
+For this project, we are going with **laravel-websockets**.
+
+```bash
+composer require beyondcode/laravel-websockets
+
+// this threw an error in my case, maybe try running the below code to install the package with dependencies
+composer require beyondcode/laravel-websockets -W
+```
+
+See the [Docs](https://beyondco.de/docs/laravel-websockets/getting-started/installation) for the rest of the steps.
+Refer to the **Basic Usage** section [here](https://beyondco.de/docs/laravel-websockets/basic-usage/pusher) to implement the laravel-websockets.
+
+To make use of the Laravel WebSockets package in combination with Pusher, you first need to install the official Pusher PHP SDK.
+If you are not yet familiar with the concept of Broadcasting in Laravel, please take a look at the [Laravel documentation](https://laravel.com/docs/6.0/broadcasting).
+
+```bash
+composer require pusher/pusher-php-server "~3.0"
+// since my PHP version is 8.1.13, I face error here, so I ran the below command
+composer require pusher/pusher-php-server
+```
+
+To start the `websockets server`, run: 
+
+```bash
+php artisan websockets:serve
+```
+
+## Frontend
+
 ## Reference
 
 - [Build A Ride Share App with Laravel and Vue | Full Stack Application Tutorial](https://www.youtube.com/watch?v=iFOEU6YNBzw)
 - [Laravel Notification Channels - Twilio](https://laravel-notification-channels.com/twilio/)
 - [Twilio - Tool to send/receive text messages](https://www.twilio.com/en-us)
+- [Laravel Websockets - Github](https://github.com/beyondcode/laravel-websockets)
+- [Laravel Websockets Docs](https://beyondco.de/docs/laravel-websockets/getting-started/introduction)
