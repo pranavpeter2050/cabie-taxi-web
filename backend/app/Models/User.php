@@ -33,6 +33,11 @@ class User extends Authenticatable
         'remember_token',
     ];
 
+    public function routeNotificationForTwilio()
+    {
+        return $this->phone;
+    }
+
     public function driver() {
         // one-to-one relationship; a user can have only one driver model associated with it
         return $this->hasOne(Driver::class);

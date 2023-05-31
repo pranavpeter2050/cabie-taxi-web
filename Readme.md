@@ -11,6 +11,14 @@ php artisan make:model Driver --migration
 
 Each time a passenger requests a ride somewhere, we need to save this information in the database. We'll call this model `trip`. There will be multiple trips associated with a passenger or a driver.
 
+Install `twilio` to help with the OTP functionality.
+
+```bash
+composer require laravel-notification-channels/twilio
+```
+
 ## Reference
 
 - [Build A Ride Share App with Laravel and Vue | Full Stack Application Tutorial](https://www.youtube.com/watch?v=iFOEU6YNBzw)
+- [Laravel Notification Channels - Twilio](https://laravel-notification-channels.com/twilio/)
+- [Twilio - Tool to send/receive text messages](https://www.twilio.com/en-us)
