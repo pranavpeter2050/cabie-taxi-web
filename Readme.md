@@ -36,7 +36,18 @@ Route::group(['middleawre' => 'auth:sanctum'], function() {
 
 ## Driver related functionality
 
-When a user is logged in, the app will ask if they want to hail a ride or work as a driver. We'll define two routes, one for checking if the user is an existing driver. If yes, we'll fetch their details, if no then other route will be used to save the user's driver-related details.
+When a user is logged in, the app will ask if they want be a passenger or a driver. We'll define two routes, one for checking if the user is an existing driver. If yes, we'll fetch their details, if no then other route will be used to save the user's driver-related details.
+
+## Trip related functionality
+
+After a selects that they want to be a passenger, they'll have to put in information about where they want to go and where they currently are. So we'll create a route (`store` method in `TripController`) to save this info in the database.
+We also define a route to `show` method which will fetch the trips associated with the currently authenticated user.
+We also need to define a route in order to adjust the trip from user (passenger) asthey proceed through the different screens in our frontend app. So we'll need a route for,
+
+- when a driver **accepts** the trip
+- when a driver **starts** the trip
+- when a driver **ends** the trip
+- update the driver's location
 
 ## Reference
 
