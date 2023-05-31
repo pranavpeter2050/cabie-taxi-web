@@ -19,6 +19,11 @@ composer require laravel-notification-channels/twilio
 
 The Twilio package apparently doesn't work for Indian numbers. For now, we'll directly look up the database to get the generated Login_code (OTP) and pass this as params in the `login/verify` API.
 
+## Making use of the generated `Auth` token
+
+We'll define a route to fetch the details of the authenticated user.
+In order to get the `user()` object from the `$request->user()` we'll need to add the middleware, `auth:sanctum` into the request and we need to provide it with the **Authorization header** containing the `token` we generated earlier using `createToken()` method inside `verify@LoginController`.
+
 ## Reference
 
 - [Build A Ride Share App with Laravel and Vue | Full Stack Application Tutorial](https://www.youtube.com/watch?v=iFOEU6YNBzw)
