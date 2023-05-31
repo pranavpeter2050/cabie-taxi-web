@@ -132,6 +132,16 @@ Done. Now run:
   npm run dev
 ```
 
+We'll be using Tailwind CSS in this project. Open a terminal inside `frontend` directory and run the below command to install Tailwind and some other dependencies:
+
+```bash
+// npm install --save-dev tailwindcss postcss autoprefixer
+npm install --D tailwindcss postcss autoprefixer
+
+// to initialize a Tailwind skeleton, run the below command
+npx tailwindcss init -p
+```
+
 ## Reference
 
 - [Build A Ride Share App with Laravel and Vue | Full Stack Application Tutorial](https://www.youtube.com/watch?v=iFOEU6YNBzw)
