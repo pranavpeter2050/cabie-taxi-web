@@ -52,7 +52,7 @@
 
 <script setup>
 import { vMaska } from "maska"
-import { reactive, ref } from "vue"
+import { onMounted, reactive, ref } from "vue"
 import axios from "axios"
 import { useRouter } from "vue-router"
 
@@ -64,10 +64,23 @@ const credentials = reactive({
 })
 const waitingOnVerification = ref(false)
 
+onMounted(() => {
+  if (localStorage.getItem("token")) {
+    router.push({
+      name: "index"
+    })
+  }
+})
+
+const formattedCredentials = computed(() => {
+  return {
+    phone: credentials.phone.replaceAll(" ", "").replace("+91-", ""),
+    login_code: credentials.login_code
+  }
+})
+
 const handleLogin = () => {
-  axios.post("http://127.0.0.1:8000/api/login", {
-    phone: credentials.phone.replaceAll(" ", "").replace("+91-", "")
-  })
+  axios.post("http://127.0.0.1:8000/api/login", formattedCredentials)
     .then((respoonse) => {
       console.log(respoonse.data)
       waitingOnVerification.value = true
@@ -79,10 +92,7 @@ const handleLogin = () => {
 }
 
 const handleVerification = () => {
-  axios.post("http://127.0.0.1:8000/api/login/verify", {
-    phone: credentials.phone.replaceAll(" ", "").replace("+91-", ""),
-    login_code: credentials.login_code
-  })
+  axios.post("http://127.0.0.1:8000/api/login/verify", formattedCredentials)
   .then((respoonse) => {
     console.log(respoonse.data) // this should be an auth token
     localStorage.setItem("token", respoonse.data)
