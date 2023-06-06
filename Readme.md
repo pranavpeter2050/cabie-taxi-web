@@ -142,6 +142,19 @@ npm install --D tailwindcss postcss autoprefixer
 npx tailwindcss init -p
 ```
 
+### [Maska](https://github.com/beholdr/maska) - Simple zero-dependency input mask for Vue.js and vanilla JS
+
+```bash
+npm i -D maska
+
+// install axios
+npm install -D axios
+```
+
+## Known Bugs
+
+- When trying to login with digits less then 10, the backend validationis not happening. Eg. if I enter a 5 digit number then it is creating a user with the 5-digit number. This should not be happening.
+
 ## Reference
 
 - [Build A Ride Share App with Laravel and Vue | Full Stack Application Tutorial](https://www.youtube.com/watch?v=iFOEU6YNBzw)
