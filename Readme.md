@@ -155,6 +155,11 @@ npm install -D axios
 
 `beforeEach()` method hooks into every navigation **to** and **from** a route in our application.
 
+## Passenger flow
+
+We can use Google Maps `Place Autocomplete` Javascript API to provide for better UX for user/passenger when they are inputting their destination.
+There is a Vue package called [Vue 3 Google Maps](https://vue-map.netlify.app/docs/) that make this process even easier. 
+
 ## Known Bugs
 
 - When trying to login with digits less then 10, the backend validationis not happening. Eg. if I enter a 5 digit number then it is creating a user with the 5-digit number. This should not be happening.
@@ -166,3 +171,5 @@ npm install -D axios
 - [Twilio - Tool to send/receive text messages](https://www.twilio.com/en-us)
 - [Laravel Websockets - Github](https://github.com/beyondcode/laravel-websockets)
 - [Laravel Websockets Docs](https://beyondco.de/docs/laravel-websockets/getting-started/introduction)
+- [Google Maps - Place Autocomplete Javascript API](https://developers.google.com/maps/documentation/javascript/place-autocomplete)
+- [Vue 3 Google Maps](https://vue-map.netlify.app/docs/)

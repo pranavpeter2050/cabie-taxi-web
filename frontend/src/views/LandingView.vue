@@ -7,7 +7,9 @@
           <button class="rounded-md border border-transparent bg-black py-2 px-4 text-sm font-medium text-white">
             Start Driving
           </button>
-          <button class="rounded-md border border-transparent bg-black py-2 px-4 text-sm font-medium text-white">
+          <button
+            @click="handleFindARide"
+            class="rounded-md border border-transparent bg-black py-2 px-4 text-sm font-medium text-white">
             Find A Ride
           </button>
         </div>
@@ -17,5 +19,12 @@
 </template>
 
 <script setup>
+import { useRouter } from "vue-router"
 
+const router = useRouter()
+const handleFindARide = () => {
+  router.push({
+    name: "location"
+  })
+}
 </script>
