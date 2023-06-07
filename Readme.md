@@ -151,6 +151,10 @@ npm i -D maska
 npm install -D axios
 ```
 
+### Adding a middleware/gaurd to Routes in Vue
+
+`beforeEach()` method hooks into every navigation **to** and **from** a route in our application.
+
 ## Known Bugs
 
 - When trying to login with digits less then 10, the backend validationis not happening. Eg. if I enter a 5 digit number then it is creating a user with the 5-digit number. This should not be happening.
