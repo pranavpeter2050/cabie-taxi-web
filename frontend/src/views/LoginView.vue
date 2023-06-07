@@ -79,7 +79,7 @@ onMounted(() => {
   }
 }) */
 
-const formattedCredentials = () => {
+const getFormattedCredentials = () => {
   return {
     phone: credentials.phone.replaceAll(" ", "").replace("+91-", ""),
     login_code: credentials.login_code
@@ -87,9 +87,7 @@ const formattedCredentials = () => {
 }
 
 const handleLogin = () => {
-  const payload = formattedCredentials()
-  console.log("login-payload: ", payload)
-  axios.post("http://127.0.0.1:8000/api/login", payload)
+  axios.post("http://127.0.0.1:8000/api/login", getFormattedCredentials())
     .then((respoonse) => {
       console.log(respoonse.data)
       waitingOnVerification.value = true
@@ -101,9 +99,7 @@ const handleLogin = () => {
 }
 
 const handleVerification = () => {
-  const payload = formattedCredentials()
-  console.log("verification-payload: ", payload)
-  axios.post("http://127.0.0.1:8000/api/login/verify", payload)
+  axios.post("http://127.0.0.1:8000/api/login/verify", getFormattedCredentials())
   .then((respoonse) => {
     console.log(respoonse.data) // this should be an auth token
     localStorage.setItem("token", respoonse.data)
