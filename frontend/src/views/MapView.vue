@@ -29,8 +29,21 @@
 
 <script setup>
 import { useLocationStore } from '@/stores/location';
+import { onMounted } from 'vue';
 import { useRouter } from 'vue-router';
 
 const location = useLocationStore()
 const router = useRouter()
+
+onMounted(async () => {
+  // does the user have a location set?
+  if (location.destination.name === "") {
+    router.push({
+      name: "location"
+    })
+  }
+
+  // get the user's current location
+  await location.updateCurrentLocation()
+})
 </script>
