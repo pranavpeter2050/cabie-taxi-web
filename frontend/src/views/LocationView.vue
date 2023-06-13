@@ -5,9 +5,12 @@
       <div class="overfdlow-hidden shadow sm:rounded-md max-w-sm mx-auto text-left">
         <div class="bg-white px-4 py-5 sm:p-6">
           <div>
-            <input type="text" placeholder="My destination"
+            <GMapAutocomplete
               class="mt-1 block w-full px-3 py-2 rounded-md border border-gray-300 shadow-sm"
+              placeholder="My destination"
+              @place_changed="handleLocationChanged"
             >
+            </GMapAutocomplete>
           </div>
         </div>
         <div class="bg-gray-50 px-4 py-3 text-right sm:px-6">
@@ -21,4 +24,7 @@
 </template>
 
 <script setup>
+const handleLocationChanged = (e) => {
+  console.log("handleLocationChanged: ", e)
+}
 </script>

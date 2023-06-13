@@ -158,11 +158,30 @@ npm install -D axios
 ## Passenger flow
 
 We can use Google Maps `Place Autocomplete` Javascript API to provide for better UX for user/passenger when they are inputting their destination.
-There is a Vue package called [Vue 3 Google Maps](https://vue-map.netlify.app/docs/) that make this process even easier. 
+There is a Vue package called [Vue 3 Google Maps](https://vue-map.netlify.app/components/autocomplete.html) that make this process even easier. Run below command to install the package.
+
+```bash
+npm install -D @fawmi/vue-google-maps
+```
+
+When trying to install this package, you might face an error like below:
+
+```console
+Uncaught SyntaxError: The requested module '/node_modules/fast-deep-equal/index.js?v=c3881df4' does not provide an export named 'default'
+```
+
+A possible solution is to change the version of the package inside `package.json` file. Delete the `node_modules` folder and `package-lock.json` and re-run `npm install` command. Read more about this issue [here](https://github.com/fawmi/vue-google-maps/issues/152) and [here](https://github.com/fawmi/vue-google-maps/issues/148).
+
+```json
+  "devDependencies": {
+    "@fawmi/vue-google-maps": "0.9.67",
+    ...
+  }
+```
 
 ## Known Bugs
 
-- When trying to login with digits less then 10, the backend validationis not happening. Eg. if I enter a 5 digit number then it is creating a user with the 5-digit number. This should not be happening.
+- When trying to login with digits less then 10, the backend validation is not happening. Example, if we enter a 5 digit number then it is creating a user with the 5-digit number. This should not be happening.
 
 ## Reference
 
