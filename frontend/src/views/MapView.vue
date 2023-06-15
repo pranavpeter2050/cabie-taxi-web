@@ -19,6 +19,7 @@
         </div>
         <div class="bg-gray-50 px-4 py-3 text-right sm:px-6">
           <button type="button"
+          @click="handleConfirmTrip"
             class="inline-flex justify-center rounded-md border border-transparent bg-black py-2 px-3 text-white">
             Let's Go!
           </button>
@@ -32,10 +33,27 @@
 import { useLocationStore } from '@/stores/location';
 import { onMounted, ref } from 'vue';
 import { useRouter } from 'vue-router';
+import http from '../helpers/http';
 
 const location = useLocationStore()
 const router = useRouter()
 const gMap = ref(null)
+
+const handleConfirmTrip = () => {
+  http().post('/api/trip', {
+    origin: location.current.geometry,
+    destination: location.destination.geometry,
+    destination_name: location.destination.name
+  })
+  .then((response) => {
+    router.push({
+      name: "trip"
+    })
+  })
+  .catch((error) => {
+    console.error(error)
+  })
+}
 
 onMounted(async () => {
   // does the user have a location set?
