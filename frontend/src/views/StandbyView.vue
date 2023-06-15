@@ -26,7 +26,7 @@ onMounted(() => {
   })
 
   echo.channel('drivers')
-    .listen('TripStarted', (e) => {
+    .listen('TripCreated', (e) => {
       console.log('Trip created: ', e)
     })
 })

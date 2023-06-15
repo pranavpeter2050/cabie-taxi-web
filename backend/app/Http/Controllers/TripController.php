@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Trip;
 use Illuminate\Http\Request;
 use App\Events\TripAccepted;
+use App\Events\TripCreated;
 use App\Events\TripEnded;
 use App\Events\TripLocationUpdated;
 use App\Events\TripStarted;
@@ -20,12 +21,15 @@ class TripController extends Controller
         ]);
 
 
-
-        return $request->user()->trips()->create($request->only([
+        $trip = $request->user()->trips()->create($request->only([
             'origin',
             'destination',
             'destination_name'
         ]));
+
+        TripCreated::dispatch($trip, $request->user());
+
+        return $trip;
     }
 
     public function show(Request $request, Trip $trip)
